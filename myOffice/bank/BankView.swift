@@ -19,7 +19,7 @@ struct BankView: View {
 //                        MARK: Ораньжевая панель сверху
                         HeaderBankView()
                         
-//                        MARK: Основная часть раздела кредита
+//                        MARK: Основная часть раздела банка
                         MainBankView()
                     }
                 }
