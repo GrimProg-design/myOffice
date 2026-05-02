@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CreditModel {
-    func perMounth(credit sum: Double, persent perMonth: Double, loan term: Int) -> Double
+    func perMounth(credit sum: Double, persent perMonth: Double, loan term: Int) async -> Double
 }

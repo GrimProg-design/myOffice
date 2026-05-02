@@ -10,15 +10,15 @@ import Foundation
 struct CreditViewModel: CreditModel {
     func perMounth(
         credit sum: Double,
-        persent perMounth: Double,
+        persent perYear: Double,
         loan term: Int
-    ) -> Double {
-        
-        let rate = perMounth
+    ) async -> Double {
+
+        let rate = perYear / 12 / 100
         let n = Double(term)
-        
+
         let powValue = pow(1 + rate, n)
-        
+
         return sum * (rate * powValue) / (powValue - 1)
     }
 }
