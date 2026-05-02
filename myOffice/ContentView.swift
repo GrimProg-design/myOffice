@@ -13,7 +13,7 @@ struct ContentView: View {
         TabView {
             BankView()
                 .tabItem {
-                    Label("Главная", systemImage: "house")
+                    Label("Банк", systemImage: "dollarsign.bank.building")
                 }
             
             Text("Экран 2")
@@ -21,7 +21,7 @@ struct ContentView: View {
                     Label("Главная", systemImage: "house")
                 }
         }
-        .tint(.blue)
+        .tint(Color("Apricot"))
         .background(.regularMaterial)
     }
 }
