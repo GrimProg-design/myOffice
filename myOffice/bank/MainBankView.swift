@@ -10,7 +10,7 @@ import SwiftUI
 struct MainBankView: View {
     var body: some View {
         List {
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: CreditView()) {
                 HStack {
                     Image(systemName: "house")
                     Text("Кредит")
@@ -42,6 +42,4 @@ struct MainBankView: View {
     }
 }
 
-#Preview {
-    MainBankView()
-}
+// Предпросмотр лучше смотреть в BankView

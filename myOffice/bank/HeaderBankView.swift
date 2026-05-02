@@ -25,6 +25,4 @@ struct HeaderBankView: View {
     }
 }
 
-#Preview {
-    HeaderBankView()
-}
+// Предпросмотр лучше смотреть в BankView
