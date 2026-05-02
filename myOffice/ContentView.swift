@@ -11,7 +11,7 @@ import SwiftData
 struct ContentView: View {
     var body: some View {
         TabView {
-            Text("Экран 1")
+            BankView()
                 .tabItem {
                     Label("Главная", systemImage: "house")
                 }
