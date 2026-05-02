@@ -16,8 +16,10 @@ struct BankView: View {
                         .ignoresSafeArea()
                     
                     VStack(spacing: 0) {
+//                        MARK: Ораньжевая панель сверху
                         HeaderBankView()
                         
+//                        MARK: Основная часть раздела кредита
                         MainBankView()
                     }
                 }
