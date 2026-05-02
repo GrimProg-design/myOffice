@@ -9,44 +9,17 @@ import SwiftUI
 
 struct BankView: View {
     var body: some View {
-        VStack {
-            ZStack {
-                
-                Color("CocoBlack")
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 0) {
+        NavigationStack {
+            VStack {
+                ZStack {
+                    Color("CocoBlack")
+                        .ignoresSafeArea()
                     
-                    ZStack {
-                        Text("My Bank")
-                    }
-                    .frame(height: 400)
-                    .frame(maxWidth: .infinity)
-                    .background(Color("Apricot"))
-                    .clipShape(
-                        UnevenRoundedRectangle(
-                            bottomLeadingRadius: 50,
-                            bottomTrailingRadius: 50
-                        )
-                    )
-                    .ignoresSafeArea()
-                    
-                    List {
+                    VStack(spacing: 0) {
+                        HeaderBankView()
                         
-                        Text("Hi")
-                            .foregroundStyle(.white)
-                            .listRowBackground(
-                                Color("CocoBlack")
-                            )
-                        
-                        Text("How")
-                            .foregroundStyle(.white)
-                            .listRowBackground(
-                                Color("CocoBlack")
-                            )
+                        MainBankView()
                     }
-                    .listStyle(.plain)
-                    .scrollContentBackground(.hidden)
                 }
             }
         }
