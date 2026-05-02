@@ -13,6 +13,7 @@ struct CreditView: View {
     @State private var percent = ""
     @State private var loan = ""
     @State private var totalPerMonth = 0.0
+    @State private var totalLoan = 0.0
     
     var body: some View {
         ZStack {
@@ -50,6 +51,8 @@ struct CreditView: View {
             Button {
                 Task {
                     totalPerMonth = await culculator.perMounth(credit: Double(sum) ?? 0.0, persent: Double(percent) ?? 0.0, loan: Int(loan) ?? 0)
+                    
+                    totalLoan = await culculator.totalReturn(forOneMonth: totalPerMonth, totalMonth: Int(loan) ?? 0)
                 }
             } label: {
                 Text("Посчитать")
@@ -62,7 +65,9 @@ struct CreditView: View {
             .frame(width: 200, height: 40)
             .padding(.top, 220)
             
-            Text("Итого: \(totalPerMonth)")
+            Text("В месяц: \(totalPerMonth)")
+                .padding(.top, 40)
+            Text("Итого: \(totalLoan)")
         }
     }
 }

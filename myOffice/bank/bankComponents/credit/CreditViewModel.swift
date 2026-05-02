@@ -8,6 +8,10 @@
 import Foundation
 
 struct CreditViewModel: CreditModel {
+    func totalReturn(forOneMonth perMonth: Double, totalMonth months: Int) async -> Double {
+        return perMonth * Double(months)
+    }
+    
     func perMounth(
         credit sum: Double,
         persent perYear: Double,
