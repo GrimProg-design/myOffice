@@ -43,5 +43,17 @@ final class BorrowersViewModel {
         } catch {
             print(error)
         }
-    }
+    } // конец функции сохранения
+    
+    func fetchBorrower() -> [BorrowersModel] {
+        
+        let descriptor = FetchDescriptor<BorrowersModel>()
+        
+        do {
+            return try context.fetch(descriptor)
+        } catch {
+            print(error)
+            return []
+        }
+    } // конец fetch метода
 }
