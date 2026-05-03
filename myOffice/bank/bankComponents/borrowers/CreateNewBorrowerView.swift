@@ -105,6 +105,11 @@ struct CreateNewBorrowerView: View {
             
             
         } // конец ZStack
+        .onAppear {
+            if viewModel == nil {
+                viewModel = BorrowersViewModel(context: context)
+            }
+        }
     } // конец body
 }
 
