@@ -6,13 +6,22 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct BorrowersView: View {
+    @Environment(\.modelContext) private var context
+    @State private var viewModel: BorrowersViewModel?
+    @State private var borrowers: [BorrowersModel] = []
+    
     var body: some View {
         ZStack {
             Color("CocoBlack")
                 .ignoresSafeArea()
-        }
+            
+            List(borrowers) {person in
+                Text(person.name)
+            }
+        } // конец ZStack
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink(destination: CreateNewBorrowerView()) {
@@ -20,8 +29,17 @@ struct BorrowersView: View {
                         .font(.title3)
                 }
             }
-        }
-    }
+        } // конец toolbar
+        .onAppear {
+            if viewModel == nil {
+                viewModel = BorrowersViewModel(
+                    context: context
+                )
+            }
+            
+            borrowers = viewModel?.fetchBorrower() ?? []
+        } // конец onAppear
+    } // body
 }
 
 #Preview {
