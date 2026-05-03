@@ -12,8 +12,8 @@ struct CreateNewBorrowerView: View {
     
 //    Стейты для полей
     @State private var personName = ""
-    @State private var dateOfReturn: Date = Date()
-    @State private var start = ""
+    @State private var dateOfReturn = ""
+    @State private var start: Date = Date()
     @State private var summ = ""
     @State private var returnSum = ""
     @State private var returnPerMonth = ""
@@ -40,17 +40,17 @@ struct CreateNewBorrowerView: View {
                     .background(.white)
                     .cornerRadius(15)
 
-                DatePicker("Дата возвратов", selection: $dateOfReturn, displayedComponents: .date)
+                TextField("Дата возвратов", text: $dateOfReturn)
+                    .padding(10)
+                    .background(.white)
+                    .cornerRadius(15)
+                
+                DatePicker("Начало платежей", selection: $start, displayedComponents: .date)
                     .padding(10)
                     .background(.white)
                     .cornerRadius(15)
                     .datePickerStyle(.compact)
                     .foregroundStyle(Color(.gray).opacity(0.5))
-
-                TextField("Начало платежей", text: $start)
-                    .padding(10)
-                    .background(.white)
-                    .cornerRadius(15)
 
                 TextField("Сумма кредита", text: $summ)
                     .padding(10)
@@ -76,7 +76,7 @@ struct CreateNewBorrowerView: View {
             
             Button {
                 if personName == "" ||
-                    start == "" ||
+                    dateOfReturn == "" ||
                     summ == "" ||
                     returnSum == "" ||
                     returnPerMonth == ""
