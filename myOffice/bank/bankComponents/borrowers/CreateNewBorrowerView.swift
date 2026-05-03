@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Foundation
+import SwiftData
 
 struct CreateNewBorrowerView: View {
-    @State private var text = ""
+    @Environment(\.modelContext) private var context
+    @State private var viewModel: BorrowersViewModel?
     
 //    Стейты для полей
     @State private var personName = ""
@@ -82,6 +85,8 @@ struct CreateNewBorrowerView: View {
                     returnPerMonth == ""
                 {
                     showingAlert = true
+                } else {
+                    viewModel?.saveBorrower(person: personName, returnDate: dateOfReturn, when: start, loan: Double(summ) ?? 0.0, returnSum: Double(returnSum) ?? 0.0, perMonth: Double(returnPerMonth) ?? 0.0, months: month)
                 }
             } label: {
                 HStack {
