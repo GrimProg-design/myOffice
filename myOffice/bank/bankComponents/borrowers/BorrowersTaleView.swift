@@ -9,9 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct BorrowersTaleView: View {
-    //    let someArr = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
-    //
-    //    @State private var selectedMonths: Set<String> = []
     @Environment(\.modelContext) private var context
     let borrower: BorrowersModel
     
