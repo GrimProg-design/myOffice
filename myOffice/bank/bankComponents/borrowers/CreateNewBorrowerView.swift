@@ -10,6 +10,7 @@ import SwiftUI
 struct CreateNewBorrowerView: View {
     @State private var text = ""
     
+//    Стейты для полей
     @State private var personName = ""
     @State private var dateOfReturn: Date = Date()
     @State private var start = ""
@@ -17,6 +18,9 @@ struct CreateNewBorrowerView: View {
     @State private var returnSum = ""
     @State private var returnPerMonth = ""
     @State private var month: [String] = []
+    
+//    Для отображения предупреждения о том что не все поля заполнены
+    @State private var showingAlert = false
     
     
     var body: some View {
@@ -36,10 +40,12 @@ struct CreateNewBorrowerView: View {
                     .background(.white)
                     .cornerRadius(15)
 
-                TextField("Дата возвратов", text: $text)
+                DatePicker("Дата возвратов", selection: $dateOfReturn, displayedComponents: .date)
                     .padding(10)
                     .background(.white)
                     .cornerRadius(15)
+                    .datePickerStyle(.compact)
+                    .foregroundStyle(Color(.gray).opacity(0.5))
 
                 TextField("Начало платежей", text: $start)
                     .padding(10)
@@ -69,7 +75,14 @@ struct CreateNewBorrowerView: View {
             .cornerRadius(20)
             
             Button {
-                
+                if personName == "" ||
+                    start == "" ||
+                    summ == "" ||
+                    returnSum == "" ||
+                    returnPerMonth == ""
+                {
+                    showingAlert = true
+                }
             } label: {
                 HStack {
                     Text("Сохранить пользователя")
@@ -80,6 +93,10 @@ struct CreateNewBorrowerView: View {
                 .cornerRadius(15)
             }
             .padding(.top, 550)
+            .alert("Пожалуйста введите все данные в поля", isPresented: $showingAlert) {
+                Button("OK", role: .cancel) {}
+            }
+            .tint(.black)
             
             
         } // конец ZStack
