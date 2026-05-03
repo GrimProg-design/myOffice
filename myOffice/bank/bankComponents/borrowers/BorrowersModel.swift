@@ -12,17 +12,17 @@ import Foundation
 @Model
 final class BorrowersModel {
     var name: String
-    var date: Date
-    var start: String
+    var date: String
+    var start: Date
     var summ: Double
     var ret: Double
     var perMonth: Double
     var months: [String]
     
-    init(name: String, date: Date = Date(), start: String, summ: Double, ret: Double, perMonth: Double, months: [String]) {
+    init(name: String, date: String, start: Date = Date(), summ: Double, ret: Double, perMonth: Double, months: [String]) {
         self.name = name
-        self.date = date
         self.start = start
+        self.date = date
         self.summ = summ
         self.ret = ret
         self.perMonth = perMonth
