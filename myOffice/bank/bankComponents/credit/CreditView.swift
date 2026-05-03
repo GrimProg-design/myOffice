@@ -28,19 +28,31 @@ struct CreditView: View {
             
             Form {
                 Section {
-                    TextField("Сумма кредита", text: $sum)
+                    TextField(
+                        "",
+                        text: $sum,
+                        prompt: Text("Введите сумму")
+                            .foregroundStyle(.gray))
                         .keyboardType(.decimalPad)
                 }
                 .listRowBackground(Color.white)
                 
                 Section {
-                    TextField("Cрок кредита", text: $loan)
+                    TextField(
+                        "",
+                        text: $loan,
+                        prompt: Text("Срок кредита")
+                            .foregroundStyle(.gray))
                         .keyboardType(.decimalPad)
                 }
                 .listRowBackground(Color.white)
                 
                 Section {
-                    TextField("Проценты", text: $percent)
+                    TextField(
+                        "",
+                        text: $percent,
+                        prompt: Text("Проценты")
+                            .foregroundStyle(.gray))
                         .keyboardType(.decimalPad)
                 }
                 .listRowBackground(Color.white)
