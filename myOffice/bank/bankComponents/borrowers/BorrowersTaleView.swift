@@ -45,6 +45,7 @@ struct BorrowersTaleView: View {
                     ForEach(borrower.months) { month in
                         
                         Text(month.name)
+                            .foregroundStyle(month.isPaid ? .white : .black)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
                             .background(
