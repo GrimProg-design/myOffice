@@ -65,9 +65,15 @@ struct CreditView: View {
             .frame(width: 200, height: 40)
             .padding(.top, 220)
             
-            Text("В месяц: \(totalPerMonth)")
-                .padding(.top, 40)
-            Text("Итого: \(totalLoan)")
+//            Формат помогает сделать округление после запятой до одного знака
+            VStack {
+                Text("В месяц: \(String(format: "%.1f", totalPerMonth))")
+                    .foregroundStyle(.white)
+                Text("Итого: \(String(format: "%.1f", totalLoan))")
+                    .foregroundStyle(.white)
+            }
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            .padding(50)
         }
     }
 }
