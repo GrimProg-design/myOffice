@@ -13,16 +13,18 @@ struct CreateNewBorrowerView: View {
     @Environment(\.modelContext) private var context
     @State private var viewModel: BorrowersViewModel?
     
-//    Стейты для полей
+    //    Стейты для полей
     @State private var personName = ""
     @State private var dateOfReturn = ""
     @State private var start: Date = Date()
     @State private var summ = ""
     @State private var returnSum = ""
     @State private var returnPerMonth = ""
-    @State private var month: [String] = []
+    @State private var month: [PaymentMonth] = []
     
-//    Для отображения предупреждения о том что не все поля заполнены
+    @State private var lastMonthDate: Date = Date()
+    
+    //    Для отображения предупреждения о том что не все поля заполнены
     @State private var showingAlert = false
     
     
@@ -42,7 +44,7 @@ struct CreateNewBorrowerView: View {
                     .padding(10)
                     .background(.white)
                     .cornerRadius(15)
-
+                
                 TextField("Дата возвратов", text: $dateOfReturn)
                     .padding(10)
                     .background(.white)
@@ -54,23 +56,60 @@ struct CreateNewBorrowerView: View {
                     .cornerRadius(15)
                     .datePickerStyle(.compact)
                     .foregroundStyle(Color(.gray).opacity(0.5))
-
+                
                 TextField("Сумма кредита", text: $summ)
                     .padding(10)
                     .background(.white)
                     .cornerRadius(15)
-
+                
                 TextField("Сумма возврата", text: $returnSum)
                     .padding(10)
                     .background(.white)
                     .cornerRadius(15)
-
+                
                 TextField("Ежемесячная плата", text: $returnPerMonth)
                     .padding(10)
                     .background(.white)
                     .cornerRadius(15)
                 
-//                тут будут месяцы массив
+                // Сори за нейминг пока работаю над ним (будущегому мне)
+                FlowLayout {
+                    ForEach(month) { mon in
+                        
+                        Text(mon.name)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(.white)
+                            .clipShape(Capsule())
+                    }
+                }
+                .padding()
+                
+                Button {
+                    
+                    let nextDate = Calendar.current.date(
+                        byAdding: .month,
+                        value: 1,
+                        to: lastMonthDate
+                    )!
+                    
+                    let formatter = DateFormatter()
+                    formatter.locale = Locale(identifier: "ru_RU")
+                    formatter.dateFormat = "LLLL"
+                    
+                    let monthName = formatter.string(from: nextDate)
+                    
+                    let newMonth = PaymentMonth(
+                        name: monthName.capitalized
+                    )
+                    
+                    month.append(newMonth)
+                    lastMonthDate = nextDate
+                    
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.largeTitle)
+                }
             }
             .padding()
             .frame(width: 300)

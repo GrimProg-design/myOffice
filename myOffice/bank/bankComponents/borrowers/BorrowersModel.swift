@@ -17,9 +17,9 @@ final class BorrowersModel {
     var summ: Double
     var ret: Double
     var perMonth: Double
-    var months: [String]
+    var months: [PaymentMonth]
     
-    init(name: String, date: String, start: Date = Date(), summ: Double, ret: Double, perMonth: Double, months: [String]) {
+    init(name: String, date: String, start: Date = Date(), summ: Double, ret: Double, perMonth: Double, months: [PaymentMonth]) {
         self.name = name
         self.start = start
         self.date = date

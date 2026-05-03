@@ -23,7 +23,7 @@ final class BorrowersViewModel {
         loan: Double,
         returnSum: Double,
         perMonth: Double,
-        months: [String]
+        months: [PaymentMonth]
     ) {
         let person = BorrowersModel(
             name: person,

@@ -19,7 +19,7 @@ struct BorrowersView: View {
                 .ignoresSafeArea()
             
             List(borrowers) {person in
-                Text(person.name)
+                BorrowersTaleView(borrower: person)
             }
         } // конец ZStack
         .toolbar {
