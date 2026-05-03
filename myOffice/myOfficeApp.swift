@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct myOfficeApp: App {
@@ -14,5 +15,6 @@ struct myOfficeApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: BorrowersModel.self)
     }
 }

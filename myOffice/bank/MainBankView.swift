@@ -12,7 +12,7 @@ struct MainBankView: View {
         List {
             NavigationLink(destination: CreditView()) {
                 HStack {
-                    Image(systemName: "house")
+                    Image(systemName: "dollarsign")
                     Text("Кредитный калькулятор")
                 }
                 .font(.title3)
@@ -25,12 +25,20 @@ struct MainBankView: View {
             )
             .listRowSeparatorTint(.white)
             
-            Text("Hi")
-                .foregroundStyle(.white)
-                .listRowBackground(
-                    Color("CocoBlack")
-                )
-                .listRowSeparatorTint(.white)
+            NavigationLink(destination: BorrowersView()) {
+                HStack {
+                    Image(systemName: "person")
+                    Text("Заемщики")
+                }
+                .font(.title3)
+                .fontWeight(.bold)
+                .padding(10)
+            }
+            .foregroundStyle(.white)
+            .listRowBackground(
+                Color("CocoBlack")
+            )
+            .listRowSeparatorTint(.white)
             
             
             Text("How")
