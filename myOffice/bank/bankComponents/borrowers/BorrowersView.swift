@@ -15,9 +15,7 @@ struct BorrowersView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    
-                } label: {
+                NavigationLink(destination: CreateNewBorrowerView()) {
                     Image(systemName: "plus")
                         .font(.title3)
                 }

@@ -9,7 +9,19 @@ import SwiftUI
 
 struct CreateNewBorrowerView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color("CocoBlack")
+                .ignoresSafeArea()
+            
+            Form {
+                
+            }
+            .frame(width: 300, height: 360)
+            .scrollContentBackground(.hidden)
+            .background(Color("Apricot"))
+            .cornerRadius(20)
+            .scrollDisabled(true)
+        }
     }
 }
 
