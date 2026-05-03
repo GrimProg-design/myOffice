@@ -31,16 +31,19 @@ struct CreditView: View {
                     TextField("Сумма кредита", text: $sum)
                         .keyboardType(.decimalPad)
                 }
+                .listRowBackground(Color.white)
                 
                 Section {
                     TextField("Cрок кредита", text: $loan)
                         .keyboardType(.decimalPad)
                 }
+                .listRowBackground(Color.white)
                 
                 Section {
                     TextField("Проценты", text: $percent)
                         .keyboardType(.decimalPad)
                 }
+                .listRowBackground(Color.white)
             }
             .frame(width: 300, height: 360)
             .scrollContentBackground(.hidden)
