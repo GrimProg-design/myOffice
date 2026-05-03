@@ -13,8 +13,11 @@ struct MainBankView: View {
             NavigationLink(destination: CreditView()) {
                 HStack {
                     Image(systemName: "house")
-                    Text("Кредит")
+                    Text("Кредитный калькулятор")
                 }
+                .font(.title3)
+                .fontWeight(.bold)
+                .padding(10)
             }
             .foregroundStyle(.white)
             .listRowBackground(
