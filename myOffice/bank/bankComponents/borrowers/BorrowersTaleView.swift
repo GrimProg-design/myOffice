@@ -17,52 +17,57 @@ struct BorrowersTaleView: View {
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: 5) {
-                Text(borrower.name)
-                    .font(.title)
-                    .fontWeight(.bold)
-                Text(borrower.date)
-                Text(
-                    borrower.start.formatted(
-                        .dateTime
-                            .day()
-                            .month(.wide)
-                            .year()
-                    )
-                )
-                Text(String(borrower.summ))
-                Text(String(borrower.ret))
-                Text(String(borrower.perMonth))
-            }
-            
-            FlowLayout {
+            VStack(alignment: .leading, spacing: 8) {
                 
-                ForEach(borrower.months) { month in
+                VStack(alignment: .leading, spacing: 4) {
                     
-                    Text(month.name)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(
-                            month.isPaid ? .green : .white
+                    Text(borrower.name)
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    Text(borrower.date)
+                    
+                    Text(
+                        borrower.start.formatted(
+                            .dateTime.day().month(.wide).year()
                         )
-                        .clipShape(Capsule())
-                        .onTapGesture {
-                            
-                            month.isPaid.toggle()
-                            
-                            do {
-                                try context.save()
-                            } catch {
-                                print(error)
-                            }
-                        }
+                    )
+                    
+                    Text(String(borrower.summ))
+                    Text(String(borrower.ret))
+                    Text(String(borrower.perMonth))
                 }
-            }
-            .padding() // конец FlowLayout
-        } // конец VStack
-        .padding()
-        .frame(width: 300)
-        .background(Color("Apricot"))
-        .cornerRadius(20)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 12)
+                
+                FlowLayout {
+                    
+                    ForEach(borrower.months) { month in
+                        
+                        Text(month.name)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(
+                                month.isPaid ? .green : .white
+                            )
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                
+                                month.isPaid.toggle()
+                                
+                                do {
+                                    try context.save()
+                                } catch {
+                                    print(error)
+                                }
+                            }
+                    }
+                }
+                .padding() // конец FlowLayout
+            } // конец VStack
+            .padding()
+            .background(Color("Apricot"))
+            .cornerRadius(20)
+        }
     }
 }

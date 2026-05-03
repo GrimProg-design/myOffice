@@ -18,9 +18,15 @@ struct BorrowersView: View {
             Color("CocoBlack")
                 .ignoresSafeArea()
             
-            List(borrowers) {person in
-                BorrowersTaleView(borrower: person)
-            }
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(borrowers, id: \.self) { person in
+                        
+                        BorrowersTaleView(borrower: person)
+                    }
+                } // конец VStack
+                .padding()
+            } // конец ScrollView
         } // конец ZStack
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
