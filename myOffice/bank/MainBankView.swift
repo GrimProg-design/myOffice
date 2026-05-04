@@ -41,13 +41,21 @@ struct MainBankView: View {
             .listRowSeparatorTint(.white)
             
             
-            Text("How")
-                .foregroundStyle(.white)
-                .listRowBackground(
-                    Color("CocoBlack")
-                )
-                .listRowSeparatorTint(.white)
-        }
+            NavigationLink(destination: MyLoanView()) {
+                HStack {
+                    Image(systemName: "creditcard")
+                    Text("Мои долги")
+                }
+                .font(.title3)
+                .fontWeight(.bold)
+                .padding(10)
+            }
+            .foregroundStyle(.white)
+            .listRowBackground(
+                Color("CocoBlack")
+            ) // конец последней NavigationLink
+            .listRowSeparatorTint(.white)
+        } // конец List
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
     }
