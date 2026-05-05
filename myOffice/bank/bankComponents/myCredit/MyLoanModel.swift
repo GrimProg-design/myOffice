@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+final class MyLoanModel {
+    var creditor: String
+    var summ: Double
+    
+    init(creditor: String, summ: Double) {
+        self.creditor = creditor
+        self.summ = summ
+    }
+}
