@@ -8,9 +8,33 @@
 import SwiftUI
 
 struct MyLoanView: View {
+    @Environment(\.modelContext) private var context
+    @State private var viewModel: MyLoanViewModel?
+    @State private var loans: [MyLoanModel] = []
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        List(loans) { loan in
+            VStack(alignment: .leading) {
+                Text(loan.creditor)
+                Text("\(loan.summ)")
+            }
+        }
+        .toolbar{
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(destination: AddNewLoanView()) {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+        .onAppear {
+            if viewModel == nil {
+                viewModel = MyLoanViewModel(
+                    context: context
+                )
+            }
+            loans = viewModel?.fetchMyLoans() ?? []
+        } // конец onApper но также конец List
+    } // конец body
 }
 
 #Preview {
