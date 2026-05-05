@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class MyLoanModel {
+final class MyLoanModel: Identifiable {
     var id: UUID = UUID()
     var creditor: String
     var summ: Double
