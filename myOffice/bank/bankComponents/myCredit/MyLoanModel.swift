@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 final class MyLoanModel {
     var creditor: String
     var summ: Double
