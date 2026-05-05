@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 final class MyLoanModel {
+    var id: UUID = UUID()
     var creditor: String
     var summ: Double
     
