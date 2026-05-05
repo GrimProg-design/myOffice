@@ -15,8 +15,25 @@ final class MyLoanViewModel {
         self.context = context
     }
     
+    func saveCreditor(
+        person: String,
+        loan: Double
+    )
+    {
+        let creditor = MyLoanModel(creditor: person, summ: loan)
+        
+        context.insert(creditor)
+        
+        do {
+            try context.save()
+            print("Кредитор успешно сохранен")
+        } catch {
+            print(error)
+        }
+    }
+    
     func fetchMyLoans() -> [MyLoanModel] {
-        var descroptor = FetchDescriptor<MyLoanModel>()
+        let descroptor = FetchDescriptor<MyLoanModel>()
         
         do {
             return try context.fetch(descroptor)
