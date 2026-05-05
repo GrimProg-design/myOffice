@@ -30,7 +30,7 @@ final class MyLoanViewModel {
         } catch {
             print(error)
         }
-    }
+    } // конец save метода
     
     func fetchMyLoans() -> [MyLoanModel] {
         let descroptor = FetchDescriptor<MyLoanModel>()
