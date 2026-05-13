@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import SwiftData
 
 struct BorrowersView: View {
     @Environment(\.modelContext) private var context
