@@ -27,6 +27,8 @@ struct CreateNewBorrowerView: View {
     //    Для отображения предупреждения о том что не все поля заполнены
     @State private var showingAlert = false
     
+    @FocusState private var isInput: Bool
+    
     
     var body: some View {
         ZStack {
@@ -41,15 +43,19 @@ struct CreateNewBorrowerView: View {
                     .multilineTextAlignment(.center)
                 
                 VStack(spacing: 12) {
-                    TextField("Имя заемщика", text: $personName)
+                    TextField("Имя заемщика", text: $personName, prompt: Text("Имя заемщика").foregroundColor(.gray))
                         .padding(10)
                         .background(.white)
                         .cornerRadius(15)
+                        .foregroundStyle(.black)
+                        .focused($isInput)
                     
-                    TextField("Дата возвратов", text: $dateOfReturn)
+                    TextField("Дата возвратов", text: $dateOfReturn, prompt: Text("Дата возвратов").foregroundColor(.gray))
                         .padding(10)
                         .background(.white)
                         .cornerRadius(15)
+                        .foregroundStyle(.black)
+                        .focused($isInput)
                     
                     DatePicker("Начало платежей", selection: $start, displayedComponents: .date)
                         .padding(10)
@@ -58,20 +64,26 @@ struct CreateNewBorrowerView: View {
                         .datePickerStyle(.compact)
                         .foregroundStyle(Color(.gray).opacity(0.5))
                     
-                    TextField("Сумма кредита", text: $summ)
+                    TextField("Сумма кредита", text: $summ, prompt: Text("Сумма кредита").foregroundColor(.gray))
                         .padding(10)
                         .background(.white)
                         .cornerRadius(15)
+                        .foregroundStyle(.black)
+                        .focused($isInput)
                     
-                    TextField("Сумма возврата", text: $returnSum)
+                    TextField("Сумма возврата", text: $returnSum, prompt: Text("Сумма возврата").foregroundColor(.gray))
                         .padding(10)
                         .background(.white)
                         .cornerRadius(15)
+                        .foregroundStyle(.black)
+                        .focused($isInput)
                     
-                    TextField("Ежемесячная плата", text: $returnPerMonth)
+                    TextField("Ежемесячная плата", text: $returnPerMonth, prompt: Text("Ежемесячная плата").foregroundColor(.gray))
                         .padding(10)
                         .background(.white)
                         .cornerRadius(15)
+                        .foregroundStyle(.black)
+                        .focused($isInput)
                     
                     // Сори за нейминг пока работаю над ним (будущегому мне)
                     FlowLayout {
@@ -82,6 +94,7 @@ struct CreateNewBorrowerView: View {
                                 .padding(.vertical, 6)
                                 .background(.white)
                                 .clipShape(Capsule())
+                                .foregroundStyle(.black)
                         }
                     }
                     .padding()
@@ -107,6 +120,8 @@ struct CreateNewBorrowerView: View {
                             month.append(newMonth)
                             lastMonthDate = nextDate
                             
+                            isInput = false
+                            
                         } label: {
                             HStack {
                                 Text("Добаить месяц")
@@ -129,6 +144,7 @@ struct CreateNewBorrowerView: View {
                                 showingAlert = true
                             } else {
                                 viewModel?.saveBorrower(person: personName, returnDate: dateOfReturn, when: start, loan: Double(summ) ?? 0.0, returnSum: Double(returnSum) ?? 0.0, perMonth: Double(returnPerMonth) ?? 0.0, months: month)
+                                isInput = false
                             }
                         } label: {
                             HStack {
