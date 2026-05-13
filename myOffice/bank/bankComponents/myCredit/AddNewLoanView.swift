@@ -6,23 +6,34 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddNewLoanView: View {
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var viewModel: MyLoanViewModel?
+    
     @State private var name = ""
     @State private var summ = ""
     
     var body: some View {
-        
-        List() {
+        List {
             Section("Добавить нового кредитора") {
                 TextField("Введите имя", text: $name)
                 TextField("Введите сумму", text: $summ)
-            } // конец Section
-        } // конец List
+            }
+        }
+        .onAppear {
+            if viewModel == nil {
+                viewModel = MyLoanViewModel(context: context)
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    
+                    viewModel?.saveCreditor(person: name, loan: Double(summ) ?? 0.0)
+                    dismiss()
                 } label: {
                     Image(systemName: "checkmark")
                 }

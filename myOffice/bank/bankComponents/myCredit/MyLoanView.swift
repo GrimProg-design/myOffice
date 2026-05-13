@@ -9,33 +9,31 @@ import SwiftUI
 import SwiftData
 
 struct MyLoanView: View {
-    @Environment(\.modelContext) private var context
-    @State private var viewModel: MyLoanViewModel?
-    @State private var loans: [MyLoanModel] = []
+    @Query(sort: \MyLoanModel.creditor) private var loans: [MyLoanModel]
     
+    @Environment(\.modelContext) private var context
+
     var body: some View {
-        List(loans) { loan in
-            VStack(alignment: .leading) {
-                Text(loan.creditor)
-                Text("\(loan.summ)")
+        NavigationStack { 
+            List(loans) { loan in
+                VStack(alignment: .leading) {
+                    Text(loan.creditor)
+                        .font(.headline)
+                    Text("\(loan.summ.formatted())")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
             }
-        }
-        .toolbar{
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink(destination: AddNewLoanView()) {
-                    Image(systemName: "plus")
+            .navigationTitle("Мои долги")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: AddNewLoanView()) {
+                        Image(systemName: "plus")
+                    }
                 }
             }
         }
-        .onAppear {
-            if viewModel == nil {
-                viewModel = MyLoanViewModel(
-                    context: context
-                )
-            }
-            loans = viewModel?.fetchMyLoans() ?? []
-        } // конец onApper но также конец List
-    } // конец body
+    }
 }
 
 #Preview {

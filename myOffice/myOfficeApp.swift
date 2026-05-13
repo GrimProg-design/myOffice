@@ -15,6 +15,6 @@ struct myOfficeApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: BorrowersModel.self)
+        .modelContainer(for: [BorrowersModel.self, MyLoanModel.self])
     }
 }
