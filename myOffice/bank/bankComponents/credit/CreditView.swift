@@ -15,6 +15,8 @@ struct CreditView: View {
     @State private var totalPerMonth = 0.0
     @State private var totalLoan = 0.0
     
+    @FocusState private var isInputActive: Bool
+    
     var body: some View {
         ZStack {
             Color("CocoBlack")
@@ -34,6 +36,8 @@ struct CreditView: View {
                         prompt: Text("Введите сумму")
                             .foregroundStyle(.gray))
                         .keyboardType(.decimalPad)
+                        .foregroundStyle(.black)
+                        .focused($isInputActive)
                 }
                 .listRowBackground(Color.white)
                 
@@ -44,6 +48,8 @@ struct CreditView: View {
                         prompt: Text("Срок кредита")
                             .foregroundStyle(.gray))
                         .keyboardType(.decimalPad)
+                        .foregroundStyle(.black)
+                        .focused($isInputActive)
                 }
                 .listRowBackground(Color.white)
                 
@@ -54,6 +60,8 @@ struct CreditView: View {
                         prompt: Text("Проценты")
                             .foregroundStyle(.gray))
                         .keyboardType(.decimalPad)
+                        .foregroundStyle(.black)
+                        .focused($isInputActive)
                 }
                 .listRowBackground(Color.white)
             }
@@ -68,6 +76,8 @@ struct CreditView: View {
                     totalPerMonth = await culculator.perMounth(credit: Double(sum) ?? 0.0, persent: Double(percent) ?? 0.0, loan: Int(loan) ?? 0)
                     
                     totalLoan = await culculator.totalReturn(forOneMonth: totalPerMonth, totalMonth: Int(loan) ?? 0)
+                    
+                    isInputActive = false
                 }
             } label: {
                 Text("Посчитать")
