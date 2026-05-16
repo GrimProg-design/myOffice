@@ -18,11 +18,11 @@ struct BorrowersTaleView: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     
-                    Text(borrower.name)
+                    Text("Имя: \(borrower.name)")
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    Text(borrower.date)
+                    Text("Каждый месяц: \(borrower.date) числа")
                     
                     Text(
                         borrower.start.formatted(
@@ -30,9 +30,9 @@ struct BorrowersTaleView: View {
                         )
                     )
                     
-                    Text(String(borrower.summ))
-                    Text(String(borrower.ret))
-                    Text(String(borrower.perMonth))
+                    Text("Сумма займа: \(String(borrower.summ))")
+                    Text("Сумма возврата \(String(borrower.ret))")
+                    Text("Ежемесячная плата \(String(borrower.perMonth))")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 12)
