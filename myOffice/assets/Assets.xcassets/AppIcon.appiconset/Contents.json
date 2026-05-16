@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "icon.png",
+      "filename" : "icon_for_myOffice.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "icon 1.png",
+      "filename" : "icon_for_myOffice 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,7 +25,7 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "icon 2.png",
+      "filename" : "icon_for_myOffice 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
